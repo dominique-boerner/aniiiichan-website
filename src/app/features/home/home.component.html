@@ -1,14 +1,25 @@
-<div class="flex flex-col w-10/12 m-auto max-w-6xl">
-  <app-twitch-stream [isOnline]="isOnline"></app-twitch-stream>
+<img
+  class="absolute right-0 top-0 transform translate-x-24 rotate-45"
+  src="assets/img/scratch.svg"
+  alt=""
+/>
+
+<div class="flex flex-col w-10/12 m-auto max-w-8xl">
+  <app-twitch-stream class="z-10" [isOnline]="isOnline"></app-twitch-stream>
   <div
     class="flex flex-wrap items-center justify-center py-12 justify-center flex-col lg:flex-row"
   >
     <div>
-      <img class="h-60 pb-8 m-auto lg:h-full lg:pb-0 lg:pr-8" src="assets/img/ghost.svg" />
+      <img
+        class="h-60 pb-8 m-auto lg:h-full lg:pb-0 lg:pr-8"
+        src="assets/img/ghost.svg"
+      />
     </div>
     <div class="flex-1 flex-col">
       <app-subtitle class="text-center lg:text-left">Guten Tag.</app-subtitle>
-      <app-title class="text-center lg:text-left">Horror, Spiel und Spass</app-title>
+      <app-title class="text-center lg:text-left"
+        >Horror, Spiel und Spass</app-title
+      >
       <div class="pt-6 text-center lg:text-left">
         <app-paragraph>
           Auf diesem Kanal will ich zusammen mit euch zocken, reden und Spass
@@ -49,4 +60,10 @@
       ></app-social-item>
     </div>
   </div>
+  <img
+    class="absolute left-0 bottom-0 transform -translate-x-24 rotate-45"
+    src="assets/img/scratch.svg"
+    alt=""
+  />
 </div>
+
