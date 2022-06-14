@@ -1,0 +1,52 @@
+<div class="flex flex-col w-10/12 m-auto max-w-6xl">
+  <app-twitch-stream [isOnline]="isOnline"></app-twitch-stream>
+  <div
+    class="flex flex-wrap items-center justify-center py-12 justify-center flex-col lg:flex-row"
+  >
+    <div>
+      <img class="h-60 pb-8 m-auto lg:h-full lg:pb-0 lg:pr-8" src="assets/img/ghost.svg" />
+    </div>
+    <div class="flex-1 flex-col">
+      <app-subtitle class="text-center lg:text-left">Guten Tag.</app-subtitle>
+      <app-title class="text-center lg:text-left">Horror, Spiel und Spass</app-title>
+      <div class="pt-6 text-center lg:text-left">
+        <app-paragraph>
+          Auf diesem Kanal will ich zusammen mit euch zocken, reden und Spass
+          haben.</app-paragraph
+        >
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col text-center py-12">
+    <app-title>Streamzeiten</app-title>
+    <app-subtitle>Und der Horror beginnt</app-subtitle>
+    <div class="flex flex-wrap justify-around pt-12">
+      <app-stream-time-item day="Montag" time="19:00"></app-stream-time-item>
+      <app-stream-time-item
+        day="Donnerstag"
+        time="19:00"
+      ></app-stream-time-item>
+    </div>
+  </div>
+  <div class="flex flex-col text-center py-12">
+    <app-title>Socials</app-title>
+    <app-subtitle>Hier gibt es Kekse!</app-subtitle>
+    <div class="flex flex-wrap justify-evenly pt-12">
+      <app-social-item
+        imageSrc="/assets/img/discord-logo.jpg"
+        text="Discord"
+        href="#"
+      ></app-social-item>
+      <app-social-item
+        imageSrc="/assets/img/instagram-logo.png"
+        text="Instagram"
+        href="https://www.instagram.com/aniiiixchan/"
+      ></app-social-item>
+      <app-social-item
+        imageSrc="/assets/img/twitch-logo.jpg"
+        text="Twitch"
+        href="https://www.twitch.tv/aniiiichan"
+      ></app-social-item>
+    </div>
+  </div>
+</div>

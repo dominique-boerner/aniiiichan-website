@@ -1,0 +1,22 @@
+@use "./node_modules/tailwindcss/base.css";
+@use "./node_modules/tailwindcss/components.css";
+@use "./node_modules/tailwindcss/utilities.css";
+
+@font-face {
+  font-family: 'HelpMe';
+  src:  url('./assets/fonts/help-me/HelpMe.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: "Remnant";
+  src:  url('./assets/fonts/remnant/Remnant-Regular.ttf') format('ttf');
+}
+
+* {
+  font-family: "Remnant", serif;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
