@@ -10,6 +10,14 @@
 @font-face {
   font-family: "Remnant";
   src:  url('./assets/fonts/remnant/Remnant-Regular.ttf') format('ttf');
+  src: url('./assets/fonts/remnant/Remnant-Regular.eot');
+  src: url('./assets/fonts/remnant/Remnant-Regular.eot?#iefix') format('embedded-opentype'),
+  url('./assets/fonts/remnant/Remnant-Regular.woff2') format('woff2'),
+  url('./assets/fonts/remnant/Remnant-Regular.woff') format('woff'),
+  url('./assets/fonts/remnant/Remnant-Regular.svg#Remnant-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 * {
