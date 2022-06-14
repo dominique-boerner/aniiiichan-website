@@ -1,14 +1,13 @@
 module.exports = {
-  content: [
-    "./src/**/*.{html,ts}",
-  ],
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
-  theme: {
-    extend: {},
+  content: ["./src/**/*.{html,ts}"],
+  purge: {
+    enabled: process?.argv?.indexOf("build") !== -1,
+    content: [
+      "./src/**/*.html",
+      "./src/**/*.ts",
+      "./projects/**/*.html",
+      "./projects/**/*.ts",
+    ],
   },
-  variants: {
-    extend: {},
-  },
-  plugins: [],
-}
+  darkMode: false,
+};
