@@ -7,4 +7,16 @@ import { Component, Input } from '@angular/core';
 export class TwitchStreamComponent {
   @Input()
   isOnline: boolean;
+
+  @Input()
+  viewerCount: string;
+
+  @Input()
+  gameName: string;
+
+  @Input()
+  type: string;
+
+  @Input()
+  startedAt: Date;
 }

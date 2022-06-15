@@ -1,9 +1,17 @@
+
+<script src="https://embed.twitch.tv/embed/v1.js"></script>
 <div
   *ngIf="isOnline"
   class="flex flex-col justify-center items-center"
-  style="height: 80vh"
+  style="height: 90vh"
 >
   <div
-    class="flex bg-pink-800 w-full bg-white h-3/4 border-8 border-white rounded-md"
-  ></div>
+    class="flex bg-pink-800 w-full h-full border-8 border-white rounded-md"
+  >
+    <iframe width="100%" src="https://player.twitch.tv/?channel=aniiiichan&parent=localhost"></iframe>
+  </div>
+  <div class="relative flex flex-col w-full rounded-md p-4">
+    <h1 class="z-10 text-2xl">Spielt gerade {{gameName}} - {{type}}</h1>
+    <h2 class="z-10 text-xl">{{viewerCount}} Zuschauer</h2>
+  </div>
 </div>

@@ -10,6 +10,12 @@ import { SubtitleComponent } from './shared/components/subtitle/subtitle.compone
 import { ParagraphComponent } from './shared/components/paragraph/paragraph.component';
 import { StreamTimeItemComponent } from './shared/components/stream-time-item/stream-time-item.component';
 import { SocialItemComponent } from './shared/components/social-item/social-item.component';
+import {
+  HttpClient,
+  HttpClientJsonpModule,
+  HttpClientModule,
+  HttpHandler,
+} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +28,7 @@ import { SocialItemComponent } from './shared/components/social-item/social-item
     StreamTimeItemComponent,
     SocialItemComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
