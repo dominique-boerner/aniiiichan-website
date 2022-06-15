@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TwitchIntegration } from '../../../../environments/twitch-integration';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { TwitchResponse } from '../../models/twitch-response';
 
 @Injectable({
