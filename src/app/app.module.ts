@@ -16,6 +16,8 @@ import { TitleComponent } from './shared/components/title/title.component';
 import { TwitchStreamComponent } from './shared/components/twitch-stream/twitch-stream.component';
 import { SocialsComponent } from './features/home/components/socials/socials.component';
 import { HeroComponent } from './features/home/components/hero/hero.component';
+import { VideosComponent } from './features/home/components/videos/videos.component';
+import { TwitchThumbnailPipe } from './shared/pipes/twitch-thumbnail.pipe';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { HeroComponent } from './features/home/components/hero/hero.component';
     StreamtimesComponent,
     SocialsComponent,
     HeroComponent,
+    VideosComponent,
+    TwitchThumbnailPipe,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

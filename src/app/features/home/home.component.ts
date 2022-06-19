@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TwitchService } from '../../core/services/twitch-service/twitch.service';
 import { TwitchResponse } from '../../core/models/twitch-response';
+import { TwitchVideo } from 'src/app/core/models/twitch-video';
+import { TwitchData } from 'src/app/core/models/twitch-data';
 
 @Component({
   selector: 'app-home',
@@ -13,10 +15,12 @@ export class HomeComponent implements OnInit {
   public type: string;
   public startedAt: Date;
 
+  public videos: TwitchVideo[];
+
   constructor(private readonly twitchService: TwitchService) {}
 
   ngOnInit() {
-    this.twitchService.getStreamData().subscribe((response: TwitchResponse) => {
+    this.twitchService.getStreamData().subscribe((response) => {
       const responseData = response.data[0];
 
       this.isOnline = response.data.length > 0;
@@ -25,5 +29,10 @@ export class HomeComponent implements OnInit {
       this.type = responseData.type;
       this.startedAt = responseData.started_at;
     });
+
+    this.twitchService.getVideos().subscribe((response) => {
+      console.log(response)
+      this.videos = response.data;
+    })
   }
 }
