@@ -844,11 +844,21 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/app/shared/components/social-item/social-item.story.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "() => ({\r\n  props: {\r\n    imageSrc: \"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png\",\r\n    text: \"Instagram\",\r\n    href: \"https://instagram.com\"\r\n  }\r\n})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/app/shared/components/paragraph/paragraph.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story",
-                "defaultValue": "() => ({\r\n  template: `<app-paragraph>Foo</app-paragraph>`\r\n\r\n})"
+                "defaultValue": "() => ({\r\n  template: `<app-paragraph>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel dui et velit tincidunt vestibulum.</app-paragraph>`\r\n})"
             },
             {
                 "name": "environment",
@@ -915,6 +925,18 @@
                     "type": "literal type"
                 }
             ],
+            "src/app/shared/components/social-item/social-item.story.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/social-item/social-item.story.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "() => ({\r\n  props: {\r\n    imageSrc: \"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png\",\r\n    text: \"Instagram\",\r\n    href: \"https://instagram.com\"\r\n  }\r\n})"
+                }
+            ],
             "src/app/shared/components/paragraph/paragraph.stories.ts": [
                 {
                     "name": "Default",
@@ -924,7 +946,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story",
-                    "defaultValue": "() => ({\r\n  template: `<app-paragraph>Foo</app-paragraph>`\r\n\r\n})"
+                    "defaultValue": "() => ({\r\n  template: `<app-paragraph>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel dui et velit tincidunt vestibulum.</app-paragraph>`\r\n})"
                 }
             ],
             "src/environments/environment.prod.ts": [
@@ -1089,6 +1111,16 @@
                 "name": "SocialItemComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/social-item/social-item.story.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
