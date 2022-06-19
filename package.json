@@ -4,10 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start:docker": "docker stop aniiiichan-website && docker rm aniiiichan-website && docker run --name aniiiichan-website -d -p 8080:80 aniiiichan-website"
+    "start:docker": "docker stop aniiiichan-website && docker rm aniiiichan-website && docker run --name aniiiichan-website -d -p 8080:80 aniiiichan-website",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {
