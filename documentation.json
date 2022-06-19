@@ -1,0 +1,1182 @@
+{
+    "pipes": [],
+    "interfaces": [
+        {
+            "name": "TwitchData",
+            "id": "interface-TwitchData-b129ce21b9c097ccd45dadb5fc4ed5b0f01cf2608b1fd3711147973e7a512970c9092fdf1793df5acdf36dbb8fe603b638e52460dd19bacf297d76f9d6bb054b",
+            "file": "src/app/core/models/twitch-data.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "export interface TwitchData {\n  viewer_count: string;\n  game_name: string;\n  type: string;\n  title: string;\n  started_at: Date;\n}\n",
+            "properties": [
+                {
+                    "name": "game_name",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                },
+                {
+                    "name": "started_at",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Date",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                },
+                {
+                    "name": "title",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "type",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                },
+                {
+                    "name": "viewer_count",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        },
+        {
+            "name": "TwitchResponse",
+            "id": "interface-TwitchResponse-33fe6723a6a936421fbe526d2425f2f04857803cdc42327e09576cc24a3e9891c7eab8810d20ab705bd8d66fe8022d2a440c381d2627f51d1ce0ded5f2923e1e",
+            "file": "src/app/core/models/twitch-response.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { TwitchData } from './twitch-data';\n\nexport interface TwitchResponse {\n  data: TwitchData[];\n}\n",
+            "properties": [
+                {
+                    "name": "data",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "TwitchData[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 4
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 165,
+            "methods": []
+        }
+    ],
+    "injectables": [
+        {
+            "name": "TwitchService",
+            "id": "injectable-TwitchService-ab60b41bc6290523e310d03b6622c7d04b606ecccbb5d50092f32abef2c4a4b28aa9c6b4d83150487324b50e3e16cb1c23fc1cabea7b3f8db68d6643fccbf1c0",
+            "file": "src/app/core/services/twitch-service/twitch.service.ts",
+            "properties": [
+                {
+                    "name": "headers",
+                    "defaultValue": "{\n    Authorization: `Bearer ${TwitchIntegration.ACCESS_TOKEN}`,\n    'Client-Id': TwitchIntegration.CLIENT_ID,\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                }
+            ],
+            "methods": [
+                {
+                    "name": "getStreamData",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Observable<any>",
+                    "typeParameters": [],
+                    "line": 18,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient } from '@angular/common/http';\nimport { TwitchIntegration } from '../../../../environments/twitch-integration';\nimport { Observable } from 'rxjs';\nimport { TwitchResponse } from '../../models/twitch-response';\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class TwitchService {\n  headers = {\n    Authorization: `Bearer ${TwitchIntegration.ACCESS_TOKEN}`,\n    'Client-Id': TwitchIntegration.CLIENT_ID,\n  };\n\n  constructor(private readonly http: HttpClient) {}\n\n  getStreamData(): Observable<any> {\n    return this.http.get<TwitchResponse>(\n      'https://api.twitch.tv/helix/streams?user_login=aniiiichan',\n      {\n        headers: this.headers,\n      }\n    );\n  }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 14,
+                "jsdoctags": [
+                    {
+                        "name": "http",
+                        "type": "HttpClient",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "injectable"
+        }
+    ],
+    "guards": [],
+    "interceptors": [],
+    "classes": [],
+    "directives": [],
+    "components": [
+        {
+            "name": "AppComponent",
+            "id": "component-AppComponent-ecf1d16b6e0ed27de8b1a1f894eb81905595a23bdaf3a3e9f72a8229c0eb8306fe4f639e0633b693bd0a291505b65b6a60b8792865676b7ea4ca9e5af0266c66",
+            "file": "src/app/app.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-root",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./app.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "title",
+                    "defaultValue": "'aniiiichan-website'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 8
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n})\nexport class AppComponent {\n  title = 'aniiiichan-website';\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "templateData": "<div class=\"relative min-h-screen w-full bg-gray-900 text-white lg:p-6 sm:p-0 overflow-hidden\">\n  <router-outlet></router-outlet>\n</div>\n"
+        },
+        {
+            "name": "HeroComponent",
+            "id": "component-HeroComponent-421ca2c2b280dffb41aae203cf0de27adf143e7ee5cc71cece8e19324905b8d983073054fd868488063ab77858ee771d515ea6063a309c1a2fc687c151e0c090",
+            "file": "src/app/features/home/components/hero/hero.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-hero",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./hero.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-hero',\r\n  templateUrl: './hero.component.html',\r\n})\r\nexport class HeroComponent {}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "templateData": "<div\r\nclass=\"flex flex-wrap items-center justify-center py-12 justify-center flex-col lg:flex-row\"\r\n>\r\n<div class=\"flex flex-1 justify-center\">\r\n  <img\r\n    class=\"h-60 pb-8 lg:h-96 lg:pb-0\"\r\n    src=\"assets/img/ghost.svg\"\r\n    alt=\"Geist\"\r\n  />\r\n</div>\r\n<div class=\"flex-1 flex-col justify-center\">\r\n  <app-subtitle class=\"text-center lg:text-left\">Guten Tag.</app-subtitle>\r\n  <app-title class=\"text-center lg:text-left\"\r\n    >Horror, Spiel und Spass</app-title\r\n  >\r\n  <div class=\"pt-6 text-center lg:text-left\">\r\n    <app-paragraph>\r\n      Auf diesem Kanal will ich zusammen mit euch zocken, reden und Spass\r\n      haben.</app-paragraph\r\n    >\r\n  </div>\r\n</div>\r\n</div>\r\n"
+        },
+        {
+            "name": "HomeComponent",
+            "id": "component-HomeComponent-269d1688bbb52daa3e211f720f140b371d7d28f967c28a0f5165fe16546078e5b7651ef7ed6a0f1948ea0c53de57d7c2d4f92c2f5465320db9b8879d72ab19d7",
+            "file": "src/app/features/home/home.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-home",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./home.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "gameName",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 12,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "isOnline",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 10,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "startedAt",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Date",
+                    "optional": false,
+                    "description": "",
+                    "line": 14,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "type",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 13,
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "viewerCount",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 11,
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 18,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { TwitchService } from '../../core/services/twitch-service/twitch.service';\nimport { TwitchResponse } from '../../core/models/twitch-response';\n\n@Component({\n  selector: 'app-home',\n  templateUrl: './home.component.html',\n})\nexport class HomeComponent implements OnInit {\n  public isOnline = false;\n  public viewerCount: string;\n  public gameName: string;\n  public type: string;\n  public startedAt: Date;\n\n  constructor(private readonly twitchService: TwitchService) {}\n\n  ngOnInit() {\n    this.twitchService.getStreamData().subscribe((response: TwitchResponse) => {\n      const responseData = response.data[0];\n\n      this.isOnline = response.data.length > 0;\n      this.viewerCount = responseData.viewer_count;\n      this.gameName = responseData.game_name;\n      this.type = responseData.type;\n      this.startedAt = responseData.started_at;\n    });\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "twitchService",
+                        "type": "TwitchService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 14,
+                "jsdoctags": [
+                    {
+                        "name": "twitchService",
+                        "type": "TwitchService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<img\r\n  class=\"absolute right-0 top-0 transform translate-x-24 rotate-45\"\r\n  src=\"assets/img/scratch.svg\"\r\n  alt=\"\"\r\n/>\r\n\r\n<div class=\"flex flex-col w-10/12 m-auto max-w-8xl\">\r\n  <img class=\"w-48\" src=\"assets/img/logo.svg\" alt=\"logo\" />\r\n  <app-twitch-stream\r\n    class=\"z-10\"\r\n    [isOnline]=\"isOnline\"\r\n    [gameName]=\"gameName\"\r\n    [startedAt]=\"startedAt\"\r\n    [type]=\"type\"\r\n    [viewerCount]=\"viewerCount\"\r\n  ></app-twitch-stream>\r\n  <app-hero></app-hero>\r\n  <app-streamtimes></app-streamtimes>\r\n  <app-socials></app-socials>\r\n  <img\r\n    class=\"absolute left-0 bottom-0 transform -translate-x-24 rotate-45\"\r\n    src=\"assets/img/scratch.svg\"\r\n    alt=\"\"\r\n  />\r\n</div>\r\n"
+        },
+        {
+            "name": "ParagraphComponent",
+            "id": "component-ParagraphComponent-0ddbfd456f1d99385ba5d4692a0daf1f1d9655b2565ddad1a0820112323412cf590015dba5c3db45b37dd20a4856b492be025be4e4e5f66991e1a75ef86602bf",
+            "file": "src/app/shared/components/paragraph/paragraph.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-paragraph",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./paragraph.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-paragraph',\n  templateUrl: './paragraph.component.html',\n})\nexport class ParagraphComponent {}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "templateData": "<p class=\"text-2xl leading-loose\"><ng-content></ng-content></p>\n"
+        },
+        {
+            "name": "SocialItemComponent",
+            "id": "component-SocialItemComponent-da50e8f6db5cfc292b599096f1b2e3daef18ecf30852a5b89ed6a2e809b061eff3c325827e15d55e77551c049db80048b223756d53ab6bd0e54004387ada57ca",
+            "file": "src/app/shared/components/social-item/social-item.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-social-item",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./social-item.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "href",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "imageSrc",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 9,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "text",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from '@angular/core';\n\n@Component({\n  selector: 'app-social-item',\n  templateUrl: './social-item.component.html',\n})\nexport class SocialItemComponent {\n  @Input()\n  imageSrc: string;\n\n  @Input()\n  text: string;\n\n  @Input()\n  href: string;\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "templateData": "<div class=\"flex flex-col text-center text-4xl relative justify-center mb-8\">\n  <img class=\"w-52 h-52 object-cover rounded-md mb-4\" [src]=\"imageSrc\" />\n  <a class=\"z-10\" [href]=\"href\"\n    ><span class=\"text-2xl text-white\">{{ text }}</span></a\n  >\n  <span class=\"absolute bottom-0 left-0 z-0 icon-scratch-large w-full text-pink-800\"></span>\n</div>\n"
+        },
+        {
+            "name": "SocialsComponent",
+            "id": "component-SocialsComponent-90fbd3f8492f44ed123c00c8d58c20b568a5fe761ecd14451ffdbeab2eae94884a88f6fc0a1e2997a1637317a943307766e1000141b925863055d5af02c13645",
+            "file": "src/app/features/home/components/socials/socials.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-socials",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./socials.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-socials',\r\n  templateUrl: './socials.component.html',\r\n})\r\nexport class SocialsComponent  {}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "templateData": "<div class=\"flex flex-col text-center py-12\">\r\n  <app-title>Socials</app-title>\r\n  <app-subtitle>Hier gibt es Kekse!</app-subtitle>\r\n  <div class=\"flex flex-wrap justify-evenly pt-12\">\r\n    <app-social-item\r\n      imageSrc=\"/assets/img/discord-logo.jpg\"\r\n      text=\"Discord\"\r\n      href=\"https://discord.com/invite/smhysFru9d\"\r\n    ></app-social-item>\r\n    <app-social-item\r\n      imageSrc=\"/assets/img/instagram-logo.png\"\r\n      text=\"Instagram\"\r\n      href=\"https://www.instagram.com/aniiiixchan/\"\r\n    ></app-social-item>\r\n    <app-social-item\r\n      imageSrc=\"/assets/img/twitch-logo.jpg\"\r\n      text=\"Twitch\"\r\n      href=\"https://www.twitch.tv/aniiiichan\"\r\n    ></app-social-item>\r\n  </div>\r\n</div>\r\n"
+        },
+        {
+            "name": "StreamTimeItemComponent",
+            "id": "component-StreamTimeItemComponent-958f14283de4e4d70d0737c1321180eafee8fce377403cc2be75f613b29ebe964871ab663499cda015d9a0679f5d3f52d8cd16b6fa9ef2111a91c1ba24501c4a",
+            "file": "src/app/shared/components/stream-time-item/stream-time-item.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-stream-time-item",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./stream-time-item.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "day",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 9,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "time",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from '@angular/core';\n\n@Component({\n  selector: 'app-stream-time-item',\n  templateUrl: './stream-time-item.component.html',\n})\nexport class StreamTimeItemComponent {\n  @Input()\n  day: string;\n\n  @Input()\n  time: string;\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "templateData": "<div class=\"flex flex-col text-center text-4xl relative w-screen h-32 justify-center lg:w-96\">\n  <img class=\"absolute left-0 top-0 transform w-full h-full object-cover\" src=\"assets/img/scratch.svg\" />\n  <span class=\"text-4xl pb-4 z-10\">{{day}}</span>\n  <span class=\"text-4xl z-10\">{{time}}</span>\n</div>\n"
+        },
+        {
+            "name": "StreamtimesComponent",
+            "id": "component-StreamtimesComponent-7e61141941a67d68d2aef79b1fe2092b67c2193bc718f683aac54c0dfea5e8fd1f5c51378f88d82b7d7344d33648246b4ef4b3850bf5d82fd4132e1b11d4624f",
+            "file": "src/app/features/home/components/streamtimes/streamtimes.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-streamtimes",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./streamtimes.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-streamtimes',\r\n  templateUrl: './streamtimes.component.html',\r\n})\r\nexport class StreamtimesComponent {}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "templateData": "<div class=\"flex flex-col text-center py-12\">\r\n  <app-title>Streamzeiten</app-title>\r\n  <app-subtitle>Und der Horror beginnt</app-subtitle>\r\n  <div class=\"flex flex-wrap justify-around pt-12\">\r\n    <app-stream-time-item day=\"Montag\" time=\"19:00\"></app-stream-time-item>\r\n    <app-stream-time-item\r\n      day=\"Donnerstag\"\r\n      time=\"19:00\"\r\n    ></app-stream-time-item>\r\n  </div>\r\n</div>\r\n"
+        },
+        {
+            "name": "SubtitleComponent",
+            "id": "component-SubtitleComponent-1ee06d1aad5e3b74fed933f0013291d04e62f996b37942a5d1544320ed027793896acadb9974f89a008ff75c74f85b25e5be07f481bcc4dd2ea89521088a1f54",
+            "file": "src/app/shared/components/subtitle/subtitle.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-subtitle",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./subtitle.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-subtitle',\n  templateUrl: './subtitle.component.html',\n})\nexport class SubtitleComponent {}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "templateData": "<h2 class=\"text-2xl opacity-80 lg:text-4xl\"><ng-content></ng-content></h2>\n"
+        },
+        {
+            "name": "TitleComponent",
+            "id": "component-TitleComponent-29efe796456e8ddf59b73c34fd490d478e630ea6a7bdd478ce76e731e05b4d11de1158cffebc9a5f8316ffcde4a4c28d50f83fb4740611fe0a7b0df903efa15d",
+            "file": "src/app/shared/components/title/title.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-title",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./title.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-title',\n  templateUrl: './title.component.html',\n})\nexport class TitleComponent {}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "templateData": "<h1 class=\"text-3xl py-6 lg:text-5xl\"><ng-content></ng-content></h1>\r\n"
+        },
+        {
+            "name": "TwitchStreamComponent",
+            "id": "component-TwitchStreamComponent-5faf18d7c112ad8beceab7208c7c44619ce17b5cb7962af75c3da520e1e0f9454ed9376ab0e08dbb6010ea398dc1376d8eb3433e6c2f8f2c4d9e265e1b344a98",
+            "file": "src/app/shared/components/twitch-stream/twitch-stream.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-twitch-stream",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./twitch-stream.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "gameName",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "isOnline",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 9,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "startedAt",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "Date",
+                    "decorators": []
+                },
+                {
+                    "name": "type",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 18,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "viewerCount",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from '@angular/core';\n\n@Component({\n  selector: 'app-twitch-stream',\n  templateUrl: './twitch-stream.component.html',\n})\nexport class TwitchStreamComponent {\n  @Input()\n  isOnline: boolean;\n\n  @Input()\n  viewerCount: string;\n\n  @Input()\n  gameName: string;\n\n  @Input()\n  type: string;\n\n  @Input()\n  startedAt: Date;\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "templateData": "<script src=\"https://embed.twitch.tv/embed/v1.js\"></script>\n<div\n  *ngIf=\"isOnline\"\n  class=\"flex flex-col justify-center items-center\"\n  style=\"height: 90vh\"\n>\n  <div class=\"flex bg-pink-800 w-full h-full border-8 border-white rounded-md\">\n    <iframe\n      width=\"100%\"\n      src=\"https://player.twitch.tv/?channel=aniiiichan&parent=stupendous-lollipop-cefd16.netlify.app&autoplay=false\"\n      allowfullscreen\n    ></iframe>\n  </div>\n  <div class=\"relative flex flex-col w-full rounded-md p-4\">\n    <h1 class=\"z-10 text-2xl\">Spielt gerade {{ gameName }} - {{ type }}</h1>\n    <h2 class=\"z-10 text-xl\">{{ viewerCount }} Zuschauer</h2>\n  </div>\n</div>\n"
+        }
+    ],
+    "modules": [
+        {
+            "name": "AppModule",
+            "id": "module-AppModule-1b19d46caf7d09d5e8319a4cdedc96337fce771ea5d8b01f6c67f78e27f48a6d2c3770f9a2f470074ad9a4300ca93d92e57d8285a6497ce7fb9fc8c4fe9447ed",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/app.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\n\r\nimport {\r\n  HttpClientModule\r\n} from '@angular/common/http';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\nimport { StreamtimesComponent } from './features/home/components/streamtimes/streamtimes.component';\r\nimport { HomeComponent } from './features/home/home.component';\r\nimport { ParagraphComponent } from './shared/components/paragraph/paragraph.component';\r\nimport { SocialItemComponent } from './shared/components/social-item/social-item.component';\r\nimport { StreamTimeItemComponent } from './shared/components/stream-time-item/stream-time-item.component';\r\nimport { SubtitleComponent } from './shared/components/subtitle/subtitle.component';\r\nimport { TitleComponent } from './shared/components/title/title.component';\r\nimport { TwitchStreamComponent } from './shared/components/twitch-stream/twitch-stream.component';\r\nimport { SocialsComponent } from './features/home/components/socials/socials.component';\r\nimport { HeroComponent } from './features/home/components/hero/hero.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    HomeComponent,\r\n    TwitchStreamComponent,\r\n    TitleComponent,\r\n    SubtitleComponent,\r\n    ParagraphComponent,\r\n    StreamTimeItemComponent,\r\n    SocialItemComponent,\r\n    StreamtimesComponent,\r\n    SocialsComponent,\r\n    HeroComponent,\r\n  ],\r\n  imports: [BrowserModule, AppRoutingModule, HttpClientModule],\r\n  providers: [],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        },
+                        {
+                            "name": "HeroComponent"
+                        },
+                        {
+                            "name": "HomeComponent"
+                        },
+                        {
+                            "name": "ParagraphComponent"
+                        },
+                        {
+                            "name": "SocialItemComponent"
+                        },
+                        {
+                            "name": "SocialsComponent"
+                        },
+                        {
+                            "name": "StreamTimeItemComponent"
+                        },
+                        {
+                            "name": "StreamtimesComponent"
+                        },
+                        {
+                            "name": "SubtitleComponent"
+                        },
+                        {
+                            "name": "TitleComponent"
+                        },
+                        {
+                            "name": "TwitchStreamComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "AppRoutingModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "AppRoutingModule",
+            "id": "module-AppRoutingModule-a3ba970c1433ab3efa816e0ea2c321b70b40e7cc576a9bf968be70b2d45ef791f35b54b69f80de277992542a3471e8155b669f6a3b8bc0ef4c94c14d73ff220a",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/app-routing.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { RouterModule, Routes } from '@angular/router';\nimport {HomeComponent} from \"./features/home/home.component\";\n\nconst routes: Routes = [{\n  path: \"\", component: HomeComponent\n}];\n\n@NgModule({\n  imports: [RouterModule.forRoot(routes)],\n  exports: [RouterModule]\n})\nexport class AppRoutingModule { }\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        }
+    ],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "context",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/test.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/components/paragraph/paragraph.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "() => ({\r\n  template: `<app-paragraph>Foo</app-paragraph>`\r\n\r\n})"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.prod.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  production: true\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  production: false\n}"
+            },
+            {
+                "name": "require",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/test.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "literal type"
+            },
+            {
+                "name": "TwitchIntegration",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/twitch-integration.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  CLIENT_ID: 'oxterfmvryowcyurvzmz3x1vs1j93z',\n  ACCESS_TOKEN: 'ph0am02pmz1ezqruvvl5efflsf7101',\n}"
+            }
+        ],
+        "functions": [],
+        "typealiases": [],
+        "enumerations": [],
+        "groupedVariables": {
+            "src/test.ts": [
+                {
+                    "name": "context",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/test.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+                },
+                {
+                    "name": "require",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/test.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type"
+                }
+            ],
+            "src/app/shared/components/paragraph/paragraph.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/paragraph/paragraph.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "() => ({\r\n  template: `<app-paragraph>Foo</app-paragraph>`\r\n\r\n})"
+                }
+            ],
+            "src/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.prod.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  production: true\n}"
+                }
+            ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  production: false\n}"
+                }
+            ],
+            "src/environments/twitch-integration.ts": [
+                {
+                    "name": "TwitchIntegration",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/twitch-integration.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  CLIENT_ID: 'oxterfmvryowcyurvzmz3x1vs1j93z',\n  ACCESS_TOKEN: 'ph0am02pmz1ezqruvvl5efflsf7101',\n}"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {}
+    },
+    "routes": {
+        "name": "<root>",
+        "kind": "module",
+        "className": "AppModule",
+        "children": [
+            {
+                "name": "routes",
+                "filename": "src/app/app-routing.module.ts",
+                "module": "AppRoutingModule",
+                "children": [
+                    {
+                        "path": "",
+                        "component": "HomeComponent"
+                    }
+                ],
+                "kind": "module"
+            }
+        ]
+    },
+    "coverage": {
+        "count": 0,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "src/app/app.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AppComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/models/twitch-data.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "TwitchData",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/models/twitch-response.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "TwitchResponse",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/core/services/twitch-service/twitch.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "TwitchService",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/features/home/components/hero/hero.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HeroComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/features/home/components/socials/socials.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SocialsComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/features/home/components/streamtimes/streamtimes.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "StreamtimesComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/features/home/home.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HomeComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/8",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/paragraph/paragraph.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ParagraphComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/paragraph/paragraph.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/social-item/social-item.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SocialItemComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/stream-time-item/stream-time-item.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "StreamTimeItemComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/subtitle/subtitle.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "SubtitleComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/title/title.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TitleComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/twitch-stream/twitch-stream.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TwitchStreamComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.prod.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/twitch-integration.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TwitchIntegration",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "context",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "require",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            }
+        ]
+    }
+}
