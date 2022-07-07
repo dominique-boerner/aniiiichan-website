@@ -1,7 +1,12 @@
-<div class="flex flex-col text-center text-4xl relative justify-center items-center mb-28">
+<a
+  [href]="href"
+  class="flex flex-col text-center text-4xl relative justify-center items-center transform transition-all ease-in-out mb-28 hover:scale-110"
+>
   <img class="w-52 h-52 object-cover rounded-md mb-4" [src]="imageSrc" />
-  <a class="z-10" [href]="href"
-    ><span class="text-2xl text-white">{{ text }}</span></a
+  <span class="z-10"
+    ><span class="text-2xl text-white">{{ text }}</span></span
   >
-  <span class="absolute bottom-0 left-0 z-0 icon-scratch-large w-full text-pink-800"></span>
-</div>
+  <span
+    class="absolute bottom-0 left-0 z-0 icon-scratch-large w-full text-pink-800"
+  ></span>
+</a>

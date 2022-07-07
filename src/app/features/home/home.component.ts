@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TwitchService } from '../../core/services/twitch-service/twitch.service';
-import { TwitchResponse } from '../../core/models/twitch-response';
 import { TwitchVideo } from 'src/app/core/models/twitch-video';
-import { TwitchData } from 'src/app/core/models/twitch-data';
 
 @Component({
   selector: 'app-home',
@@ -31,8 +29,8 @@ export class HomeComponent implements OnInit {
     });
 
     this.twitchService.getVideos().subscribe((response) => {
-      console.log(response)
+      console.log(response);
       this.videos = response.data;
-    })
+    });
   }
 }
