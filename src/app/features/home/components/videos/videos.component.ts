@@ -8,6 +8,6 @@ import { TwitchVideo } from 'src/app/core/models/twitch-video';
 export class VideosComponent {
 
   @Input()
-    videos: TwitchVideo[];
+    videos: TwitchVideo[] | null;
 
 }

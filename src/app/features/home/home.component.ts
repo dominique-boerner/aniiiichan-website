@@ -1,36 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TwitchService } from '../../core/services/twitch-service/twitch.service';
-import { TwitchVideo } from 'src/app/core/models/twitch-video';
 
+/**
+ * This page is the front page.
+ */
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
-export class HomeComponent implements OnInit {
-  public isOnline = false;
-  public viewerCount: string;
-  public gameName: string;
-  public type: string;
-  public startedAt: Date;
-
-  public videos: TwitchVideo[];
+export class HomeComponent {
+  public isOnline$ = this.twitchService.isOnline();
+  public viewerCount$ = this.twitchService.getViewerCount();
+  public gameName$ = this.twitchService.getGameName();
+  public typeOfStream$ = this.twitchService.getTypeOfStream();
+  public startedAt$ = this.twitchService.getStreamStartedAt();
+  public videos$ = this.twitchService.getPastVideos();
 
   constructor(private readonly twitchService: TwitchService) {}
-
-  ngOnInit() {
-    this.twitchService.getStreamData().subscribe((response) => {
-      const responseData = response.data[0];
-
-      this.isOnline = response.data.length > 0;
-      this.viewerCount = responseData.viewer_count;
-      this.gameName = responseData.game_name;
-      this.type = responseData.type;
-      this.startedAt = responseData.started_at;
-    });
-
-    this.twitchService.getVideos().subscribe((response) => {
-      console.log(response);
-      this.videos = response.data;
-    });
-  }
 }

@@ -6,17 +6,17 @@ import { Component, Input } from '@angular/core';
 })
 export class TwitchStreamComponent {
   @Input()
-  isOnline: boolean;
+  isOnline: boolean | null;
 
   @Input()
-  viewerCount: string;
+  viewerCount: string | null;
 
   @Input()
-  gameName: string;
+  gameName: string | null;
 
   @Input()
-  type: string;
+  type: string | null;
 
   @Input()
-  startedAt: Date;
+  startedAt: Date | null;
 }

@@ -7,18 +7,18 @@
 <div class="flex flex-col w-10/12 m-auto max-w-8xl">
   <img class="w-48" src="assets/img/logo.svg" alt="logo" />
   <app-twitch-stream
-  class="z-10"
-  [isOnline]="isOnline"
-  [gameName]="gameName"
-  [startedAt]="startedAt"
-  [type]="type"
-  [viewerCount]="viewerCount"
+    class="z-10"
+    [isOnline]="isOnline$ | async"
+    [gameName]="gameName$ | async"
+    [startedAt]="startedAt$ | async"
+    [type]="typeOfStream$ | async"
+    [viewerCount]="viewerCount$ | async"
   ></app-twitch-stream>
   <app-hero></app-hero>
-  <div *ngIf="!isOnline" class="text-center">
+  <div *ngIf="!isOnline$" class="text-center">
     <app-title>Derzeit bin ich offline</app-title>
     <app-subtitle>Schau dir doch meine alten Streams an!</app-subtitle>
-    <app-videos [videos]="videos"></app-videos>
+    <app-videos [videos]="videos$ | async"></app-videos>
   </div>
   <app-streamtimes></app-streamtimes>
   <app-socials></app-socials>
