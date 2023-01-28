@@ -15,7 +15,7 @@
     [viewerCount]="viewerCount$ | async"
   ></app-twitch-stream>
   <app-hero></app-hero>
-  <div *ngIf="!isOnline$" class="text-center">
+  <div *ngIf="!(isOnline$ | async)" class="text-center">
     <app-title>Derzeit bin ich offline</app-title>
     <app-subtitle>Schau dir doch meine alten Streams an!</app-subtitle>
     <app-videos [videos]="videos$ | async"></app-videos>
