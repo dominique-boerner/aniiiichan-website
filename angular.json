@@ -118,5 +118,7 @@
       }
     }
   },
-  "defaultProject": "aniiiichan-website"
+  "cli": {
+    "analytics": false
+  }
 }
