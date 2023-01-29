@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { TwitchIntegration } from '../../../../environments/twitch-integration';
 import { Observable } from 'rxjs';
 import { TwitchResponse } from '../../models/twitch-response';
@@ -14,7 +14,8 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class TwitchService {
-  headers = {
+  private readonly TWITCH_API_BASE_URL = 'https://api.twitch.tv/helix';
+  private readonly API_HEADERS = {
     Authorization: `Bearer ${TwitchIntegration.ACCESS_TOKEN}`,
     'Client-Id': TwitchIntegration.CLIENT_ID,
   };
@@ -22,73 +23,30 @@ export class TwitchService {
   constructor(private readonly http: HttpClient) {}
 
   /**
-   * If ani is currently online.
-   */
-  isOnline(): Observable<boolean> {
-    return this.getStreamData().pipe(
-      map((response) => response.data.length > 0)
-    );
-  }
-
-  /**
-   * The amount of current stream viewers.
-   * If ani isn't online, return null.
-   */
-  getViewerCount(): Observable<string | null> {
-    return this.getStreamData().pipe(
-      map((response) => response.data[0]?.viewer_count ?? null)
-    );
-  }
-
-  /**
-   * The current streams game name.
-   * If ani isn't online, return null.
-   */
-  getGameName(): Observable<string | null> {
-    return this.getStreamData().pipe(
-      map((response) => response.data[0]?.game_name ?? null)
-    );
-  }
-
-  /**
-   * The current streams type.
-   * If ani isn't online, return null.
-   */
-  getTypeOfStream(): Observable<string | null> {
-    return this.getStreamData().pipe(
-      map((response) => response.data[0]?.type ?? null)
-    );
-  }
-
-  /**
-   * The time the current stream started.
-   * If ani isn't online, return null.
-   */
-  getStreamStartedAt(): Observable<Date | null> {
-    return this.getStreamData().pipe(
-      map((response) => response.data[0]?.started_at ?? null)
-    );
-  }
-
-  /**
    * Get the past videos of the current month.
    */
   getPastVideos(): Observable<TwitchVideo[]> {
+    const params = new HttpParams().set('user_id', '750959779');
+
     return this.http
-      .get<TwitchResponse<TwitchVideo>>(
-        'https://api.twitch.tv/helix/videos?user_id=750959779',
-        {
-          headers: this.headers,
-        }
-      )
+      .get<TwitchResponse<TwitchVideo>>(`${this.TWITCH_API_BASE_URL}/videos`, {
+        params,
+        headers: this.API_HEADERS,
+      })
       .pipe(map((response) => response.data));
   }
 
-  private getStreamData(): Observable<TwitchResponse<TwitchData>> {
+  /**
+   * Get information about the current stream.
+   */
+  getStreamData(): Observable<TwitchResponse<TwitchData>> {
+    const params = new HttpParams().set('user_login', 'aniiiichan');
+
     return this.http.get<TwitchResponse<TwitchData>>(
-      'https://api.twitch.tv/helix/streams?user_login=aniiiichan',
+      `${this.TWITCH_API_BASE_URL}/streams`,
       {
-        headers: this.headers,
+        params,
+        headers: this.API_HEADERS,
       }
     );
   }

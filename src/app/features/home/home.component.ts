@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TwitchService } from '../../core/services/twitch-service/twitch.service';
+import { StreamService } from '../../core/services/stream-service/stream.service';
 
 /**
  * This page is the front page.
@@ -9,12 +10,15 @@ import { TwitchService } from '../../core/services/twitch-service/twitch.service
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
-  public isOnline$ = this.twitchService.isOnline();
-  public viewerCount$ = this.twitchService.getViewerCount();
-  public gameName$ = this.twitchService.getGameName();
-  public typeOfStream$ = this.twitchService.getTypeOfStream();
-  public startedAt$ = this.twitchService.getStreamStartedAt();
+  public isOnline$ = this.streamService.isOnline();
+  public viewerCount$ = this.streamService.getViewerCount();
+  public gameName$ = this.streamService.getGameName();
+  public typeOfStream$ = this.streamService.getTypeOfStream();
+  public startedAt$ = this.streamService.getStreamStartedAt();
   public videos$ = this.twitchService.getPastVideos();
 
-  constructor(private readonly twitchService: TwitchService) {}
+  constructor(
+    private readonly twitchService: TwitchService,
+    private readonly streamService: StreamService
+  ) {}
 }
